@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blush &amp; Batter | Custom Cakes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" id="home">
+    <a class="logo" href="#home">Blush &amp; Batter</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="#products" aria-label="Shopping cart" class="cart-link">
+  <img src="images/cart.png" alt="Cart" class="cart-icon">
+  <span class="cart-count" id="cartCount">0</span>
+</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Made to sweeten your occasions</h1>
+  </section>
+
+  <main>
+    <section class="products" id="products" aria-label="Our cakes">
+      <article class="product-card">
+        <div class="image-wrap">
+          <img class="product-image" src="images/vintagebento.jpg">
+          <button class="favorite" aria-label="Add Vintage Bento to favorites">♡</button>
+        </div>
+        <div class="product-info"><span class="product-name">Vintage Bento</span><span class="price">₱350.00</span></div>
+        <div class="options">
+          <div class="color-dots"><button class="dot one selected" aria-label="Pink"></button><button class="dot two" aria-label="Light pink"></button><button class="dot three" aria-label="Dusty pink"></button></div>
+          <div class="sizes"><button class="size selected">S</button><button class="size">M</button><button class="size">L</button></div>
+        </div>
+        <button class="add-button">ADD TO CART</button>
+      </article>
+
+      <article class="product-card">
+        <div class="image-wrap">
+          <img class="product-image" src="images/ribbonpattern.png">
+          <button class="favorite" aria-label="Add Ribbon Pattern to favorites">♡</button>
+        </div>
+        <div class="product-info"><span class="product-name">Ribbon Pattern</span><span class="price">₱500.00</span></div>
+        <div class="options">
+          <div class="color-dots"><button class="dot one selected" aria-label="Pink"></button><button class="dot two" aria-label="Light pink"></button><button class="dot three" aria-label="Dusty pink"></button></div>
+          <div class="sizes"><button class="size selected">S</button><button class="size">M</button><button class="size">L</button></div>
+        </div>
+        <button class="add-button">ADD TO CART</button>
+      </article>
+
+      <article class="product-card">
+        <div class="image-wrap">
+          <img class="product-image" src="images/simplevintage.png">
+          <button class="favorite" aria-label="Add Simple Vintage to favorites">♡</button>
+        </div>
+        <div class="product-info"><span class="product-name">Simple Vintage</span><span class="price">₱500.00</span></div>
+        <div class="options">
+          <div class="color-dots"><button class="dot one selected" aria-label="Pink"></button><button class="dot two" aria-label="Light pink"></button><button class="dot three" aria-label="Dusty pink"></button></div>
+          <div class="sizes"><button class="size selected">S</button><button class="size">M</button><button class="size">L</button></div>
+        </div>
+        <button class="add-button">ADD TO CART</button>
+      </article>
+
+      <article class="product-card">
+        <div class="image-wrap">
+          <img class="product-image" src="images/printedbento.jpg">
+          <button class="favorite" aria-label="Add Printed Bento to favorites">♡</button>
+        </div>
+        <div class="product-info"><span class="product-name">Printed Bento</span><span class="price">₱450.00</span></div>
+        <div class="options">
+          <div class="color-dots"><button class="dot one selected" aria-label="Pink"></button><button class="dot two" aria-label="Light pink"></button><button class="dot three" aria-label="Dusty pink"></button></div>
+          <div class="sizes"><button class="size selected">S</button><button class="size">M</button><button class="size">L</button></div>
+        </div>
+        <button class="add-button">ADD TO CART</button>
+      </article>
+    </section>
+
+    <section class="about" id="about">
+      <h2>A little sweetness goes a long way.</h2>
+      <p>Beautifully made cakes for birthdays, celebrations, and all of life's sweetest moments. Choose your favorite design and let us make your occasion extra special.</p>
+    </section>
+  </main>
+
+  <footer id="contact">HAVE A SWEET DAY · BLUSH &amp; BATTER</footer>
+
+  <script>
+    let cartTotal = 0;
+    const cartCount = document.getElementById("cartCount");
+
+    document.querySelectorAll(".product-card").forEach((card) => {
+      card.querySelectorAll(".dot").forEach((dot) => {
+        dot.addEventListener("click", () => {
+          card.querySelectorAll(".dot").forEach((item) => item.classList.remove("selected"));
+          dot.classList.add("selected");
+        });
+      });
+
+      card.querySelectorAll(".size").forEach((size) => {
+        size.addEventListener("click", () => {
+          card.querySelectorAll(".size").forEach((item) => item.classList.remove("selected"));
+          size.classList.add("selected");
+        });
+      });
+
+      card.querySelector(".favorite").addEventListener("click", (event) => {
+        const button = event.currentTarget;
+        button.classList.toggle("active");
+        button.textContent = button.classList.contains("active") ? "♥" : "♡";
+      });
+
+      card.querySelector(".add-button").addEventListener("click", () => {
+        cartTotal += 1;
+        cartCount.textContent = cartTotal;
+        const button = card.querySelector(".add-button");
+        const originalText = button.textContent;
+        button.textContent = "ADDED!";
+        setTimeout(() => button.textContent = originalText, 1000);
+      });
+    });
+  </script>
+</body>
+</html>
